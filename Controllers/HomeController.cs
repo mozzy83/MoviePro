@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoviePro.Data;
+using MoviePro.Enums;
 using MoviePro.Models;
 using MoviePro.Models.ViewModels;
 using MoviePro.Services;
@@ -33,10 +34,10 @@ namespace MoviePro.Controllers
                                 .Include(c => c.MovieCollections)
                 .ThenInclude(mc => mc.Movie)
                                 .ToListAsync(),
-                NowPlaying = await _tmdbMovieService.SearchMoviesAsync(Enums.MovieCategory.now_playing, count),
-                Popular = await _tmdbMovieService.SearchMoviesAsync(Enums.MovieCategory.popular, count),
-                TopRated = await _tmdbMovieService.SearchMoviesAsync(Enums.MovieCategory.top_rated, count),
-                Upcoming = await _tmdbMovieService.SearchMoviesAsync(Enums.MovieCategory.upcoming, count)
+                NowPlaying = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.now_playing, count),
+                Popular = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.popular, count),
+                TopRated = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.top_rated, count),
+                Upcoming = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.upcoming, count)
             };
             return View(data);
         }
