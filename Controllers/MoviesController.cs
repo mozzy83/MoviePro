@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -68,6 +69,7 @@ namespace MoviePro.Controllers
             return View(movies);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id, bool local = false)
         {
             if (id == null)
